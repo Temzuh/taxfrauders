@@ -1,0 +1,12 @@
+version: "3"
+services:
+  mysql:
+    image: 'mysql/mysql-server:8.0'
+    ports:
+        - '6650:3306'
+    environment:
+        MYSQL_ROOT_PASSWORD: 'taxfrauders'
+        MYSQL_ROOT_HOST: '%'
+        MYSQL_DATABASE: 'taxfrauders'
+    volumes:
+        - './database:/var/lib/mysql'
