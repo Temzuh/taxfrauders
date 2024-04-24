@@ -10,4 +10,5 @@ public class TaxfraudersDbContext : DbContext
     }
 
 public DbSet<taxfrauders.Models.Workplace> Workplace { get; set; } = default!;
+	public DbSet<taxfrauders.Models.User> User { get; set; } = default!;
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +11,25 @@ var connectionString = "server=localhost;user=root;password=taxfrauders;database
 // Alternatively, use 'ServerVersion.AutoDetect(connectionString)'.
 // For common usages, see pull request #1233.
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 36));
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+	.AddCookie(options =>
+	{
+		options.LoginPath = "/Login";
+		options.AccessDeniedPath = "/Login/Logout";
+		options.LogoutPath = "/";
+		options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+		options.Cookie.Name = "PERSEHIKI";
+	});
+builder.Services.AddAuthorization(options =>
+{
+	options.AddPolicy("NoAdminAccess", policy =>
+	{
+		policy.RequireAssertion(context =>
 
+			!(context.User.Identity.IsAuthenticated && context.User.IsInRole("admin")));
+
+	});
+});
 // Replace 'YourDbContext' with the name of your own DbContext derived class.
 builder.Services.AddDbContext<TaxfraudersDbContext>(
     dbContextOptions => dbContextOptions
@@ -37,6 +56,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",

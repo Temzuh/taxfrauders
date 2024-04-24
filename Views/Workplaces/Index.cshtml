@@ -26,6 +26,9 @@
                 <th scope="col" class="px-6 py-3">
                     Osoite
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    Luoja
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -42,6 +45,9 @@
                 </td>
                 <td class="px-6 py-4">
                     @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td class="px-6 py-4">
+                    @Html.DisplayFor(modelItem => item.User.Username)
                 </td>
             </tr>
 }
