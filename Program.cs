@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-var connectionString = "server=localhost;user=root;password=taxfrauders;database=taxfrauders;port=6650";
+var connectionString = "server=172.17.0.1;user=root;password=taxfrauders;database=taxfrauders;port=6650";
 // Replace with your server version and type.
 // Use 'MariaDbServerVersion' for MariaDB.
 // Alternatively, use 'ServerVersion.AutoDetect(connectionString)'.
