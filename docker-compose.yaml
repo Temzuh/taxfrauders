@@ -4,7 +4,7 @@ services:
     build: .
     image: taxfrauders:latest
     ports: 
-      - "80:8080"
+      - "8080:8080"
   mysql:
     image: 'mysql/mysql-server:8.0'
     ports:
