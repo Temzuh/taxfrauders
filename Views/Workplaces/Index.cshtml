@@ -38,7 +38,7 @@
                     @Html.DisplayFor(modelItem =>item.Id)
                 </th>
                 <td class="px-6 py-4">
-                    @Html.DisplayFor(modelItem =>item.Title)
+                        <a href="/workplaces/details/@Html.DisplayFor(modelItem =>item.Id)" class="underline">@Html.DisplayFor(modelItem => item.Title)</a>
                 </td>
                 <td class="px-6 py-4">
                     @Html.DisplayFor(modelItem =>item.Description)
